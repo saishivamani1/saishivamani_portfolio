@@ -61,12 +61,22 @@ export default function MangaCursor() {
 
   // Prevent server-side hydration errors
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    // Detect touch/mobile — disable custom cursor on those devices
+    const isTouch =
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(pointer: coarse)').matches;
+    setIsTouchDevice(isTouch);
+  }, []);
+
+  if (!mounted || isTouchDevice) return null;
 
   return (
     <>
-      {/* Hide generic cursor globally */}
+      {/* Hide native cursor only on non-touch devices */}
       <style>{`
         * {
           cursor: none !important;
