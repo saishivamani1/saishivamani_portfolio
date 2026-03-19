@@ -1,7 +1,15 @@
 'use client';
 import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 
 export default function Footer() {
+  const socialLinks = [
+    { label: 'GitHub',  icon: <FaGithub   size={20} />, href: 'https://github.com/saishivamani1' },
+    { label: 'LinkedIn', icon: <FaLinkedin size={20} />, href: 'https://www.linkedin.com/in/saishivamani1/' },
+    { label: 'LeetCode', icon: <SiLeetcode size={20} />, href: 'https://leetcode.com/u/sai_shivamani1/' },
+  ];
+
   return (
     <footer className="bg-black border-t border-[#1a1a1a] py-10 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
@@ -22,20 +30,17 @@ export default function Footer() {
 
         {/* Links */}
         <div className="flex items-center gap-4">
-          {[
-            { label: 'GH', href: 'https://github.com/saishivamani1' },
-            { label: 'LI', href: 'https://www.linkedin.com/in/saishivamani1/' },
-            { label: 'LC', href: 'https://leetcode.com/u/sai_shivamani1/' },
-          ].map((link) => (
+          {socialLinks.map((link) => (
             <motion.a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
-              className="font-mono text-xs text-[#5a5a5a] hover:text-white transition-colors border border-[#2e2e2e] px-2 py-1 hover:border-white"
+              title={link.label}
+              className="flex items-center justify-center border border-[#2e2e2e] p-1.5 hover:border-white hover:text-white text-[#5a5a5a] transition-colors"
             >
-              {link.label}
+              {link.icon}
             </motion.a>
           ))}
         </div>

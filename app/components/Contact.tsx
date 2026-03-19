@@ -2,6 +2,9 @@
 import { useState, FormEvent, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
+import { FaGithub, FaLinkedin, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+import { SiLeetcode } from 'react-icons/si';
 
 interface FormState {
   name: string;
@@ -96,19 +99,19 @@ export default function Contact() {
             {/* Contact links */}
             <div className="flex flex-col gap-4 mt-4">
               {[
-                { icon: '📱', label: 'PHONE',    value: '+91 9704151539',              href: 'tel:+919704151539' },
-                { icon: '📧', label: 'EMAIL',    value: 'saishivamani@outlook.com',    href: 'mailto:saishivamani@outlook.com' },
-                { icon: '💼', label: 'LINKEDIN', value: 'linkedin.com/in/saishivamani1', href: 'https://www.linkedin.com/in/saishivamani1/' },
-                { icon: '🐙', label: 'GITHUB',   value: 'github.com/saishivamani1',   href: 'https://github.com/saishivamani1' },
-                { icon: '🧩', label: 'LEETCODE', value: 'leetcode.com/u/sai_shivamani1', href: 'https://leetcode.com/u/sai_shivamani1/' },
-                { icon: '📍', label: 'LOCATION', value: 'Hyderabad, 500070 / Remote', href: null },
+                { icon: <FaPhone    size={18} className="text-[#5a5a5a] group-hover:text-white transition-colors" />, label: 'PHONE',    value: '+91 9704151539',              href: 'tel:+919704151539' },
+                { icon: <MdEmail    size={18} className="text-[#5a5a5a] group-hover:text-white transition-colors" />, label: 'EMAIL',    value: 'saishivamani@outlook.com',    href: 'mailto:saishivamani@outlook.com' },
+                { icon: <FaLinkedin size={18} className="text-[#5a5a5a] group-hover:text-white transition-colors" />, label: 'LINKEDIN', value: 'linkedin.com/in/saishivamani1', href: 'https://www.linkedin.com/in/saishivamani1/' },
+                { icon: <FaGithub   size={18} className="text-[#5a5a5a] group-hover:text-white transition-colors" />, label: 'GITHUB',   value: 'github.com/saishivamani1',   href: 'https://github.com/saishivamani1' },
+                { icon: <SiLeetcode size={18} className="text-[#5a5a5a] group-hover:text-white transition-colors" />, label: 'LEETCODE', value: 'leetcode.com/u/sai_shivamani1', href: 'https://leetcode.com/u/sai_shivamani1/' },
+                { icon: <FaMapMarkerAlt size={18} className="text-[#5a5a5a] group-hover:text-white transition-colors" />, label: 'LOCATION', value: 'Hyderabad, 500070 / Remote', href: null },
               ].map((item) => (
                 <motion.div
                   key={item.label}
                   whileHover={{ x: 4 }}
                   className="flex items-center gap-4 border-b border-[#2e2e2e] pb-3 group"
                 >
-                  <span className="text-xl w-8">{item.icon}</span>
+                  <span className="w-8 flex items-center justify-center">{item.icon}</span>
                   <div>
                     <p className="font-mono text-[10px] text-[#5a5a5a] tracking-widest">{item.label}</p>
                     {item.href ? (

@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import SpeedLines from './SpeedLines';
+import { FaCode, FaRobot } from 'react-icons/fa';
+import { GiCrossedSwords } from 'react-icons/gi';
 
 const roles = ['Full Stack Developer', 'Problem Solver', 'AI Engineer'];
 
@@ -113,9 +115,13 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex flex-wrap gap-2"
           >
-            {['Full Stack 💻', 'C++ DSA ⚔️', 'AI 🤖'].map((tag) => (
-              <span key={tag} className="font-mono text-xs px-3 py-1.5 border border-[#2e2e2e] text-[#bfbfbf] bg-[#1a1a1a]">
-                {tag}
+            {[
+              { label: 'Full Stack', icon: <FaCode        size={12} /> },
+              { label: 'C++ DSA',   icon: <GiCrossedSwords size={12} /> },
+              { label: 'AI',        icon: <FaRobot        size={12} /> },
+            ].map((tag) => (
+              <span key={tag.label} className="inline-flex items-center gap-1.5 font-mono text-xs px-3 py-1.5 border border-[#2e2e2e] text-[#bfbfbf] bg-[#1a1a1a]">
+                {tag.icon} {tag.label}
               </span>
             ))}
           </motion.div>

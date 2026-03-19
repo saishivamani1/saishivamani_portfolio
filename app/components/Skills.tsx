@@ -2,13 +2,15 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { gsap } from 'gsap';
+import { FaCode, FaRobot, FaDatabase, FaBrain } from 'react-icons/fa';
+import { SiReact } from 'react-icons/si';
 
 const skills = [
-  { name: 'Programming Languages', level: 90, icon: '💻', desc: 'Python, C++, Java, JavaScript, TypeScript, C' },
-  { name: 'Frameworks & Tech', level: 85, icon: '⚛️', desc: 'React.js, Next.js, Flask, Streamlit, Firebase, Gradio, Spring Boot' },
-  { name: 'Machine Learning & AI', level: 88, icon: '🤖', desc: 'Machine Learning, NLP, Transformers, LLMs, Data Analysis' },
-  { name: 'Databases', level: 80, icon: '🗄️', desc: 'MySQL, MongoDB, Firestore' },
-  { name: 'Core Concepts', level: 95, icon: '🧠', desc: 'DSA, Problem Solving, System Design Fundamentals' },
+  { name: 'Programming Languages', level: 90, icon: <FaCode     size={24} className="text-white" />, desc: 'Python, C++, Java, JavaScript, TypeScript, C' },
+  { name: 'Frameworks & Tech',      level: 85, icon: <SiReact    size={24} className="text-white" />, desc: 'React.js, Next.js, Flask, Streamlit, Firebase, Gradio, Spring Boot' },
+  { name: 'Machine Learning & AI',  level: 88, icon: <FaRobot    size={24} className="text-white" />, desc: 'Machine Learning, NLP, Transformers, LLMs, Data Analysis' },
+  { name: 'Databases',              level: 80, icon: <FaDatabase size={24} className="text-white" />, desc: 'MySQL, MongoDB, Firestore' },
+  { name: 'Core Concepts',          level: 95, icon: <FaBrain    size={24} className="text-white" />, desc: 'DSA, Problem Solving, System Design Fundamentals' },
 ];
 
 function PowerBar({ skill, index }: { skill: typeof skills[0]; index: number }) {
@@ -41,7 +43,7 @@ function PowerBar({ skill, index }: { skill: typeof skills[0]; index: number }) 
     >
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-3">
-          <span className="text-2xl">{skill.icon}</span>
+          <span className="flex items-center justify-center w-8">{skill.icon}</span>
           <div>
             <p className="font-manga text-lg text-white tracking-widest">{skill.name}</p>
             <p className="font-mono text-xs text-[#5a5a5a]">{skill.desc}</p>

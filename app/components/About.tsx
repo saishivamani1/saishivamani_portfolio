@@ -1,26 +1,29 @@
 'use client';
 import { motion } from 'framer-motion';
 import MangaPanel from './MangaPanel';
+import { BsLightningChargeFill } from 'react-icons/bs';
+import { FaBullseye } from 'react-icons/fa';
+import { GiFlowerStar } from 'react-icons/gi';
 
 const panels = [
   {
     number: '02',
     title: 'WHO AM I',
-    icon: '⚡',
+    icon: <BsLightningChargeFill size={36} className="text-white" />,
     content:
       "I'm Sai Shivamani, a dynamic problem solver and AI Engineer focused on building scalable computing systems. I excel at translating complex algorithmic challenges into efficient, production-ready full-stack applications.",
   },
   {
     number: '03',
     title: 'MY PHILOSOPHY',
-    icon: '🎯',
+    icon: <FaBullseye size={36} className="text-white" />,
     content:
       "Logically sound, algorithmically robust. I believe in writing code that scales elegantly. Systems should be designed not just to function, but to adapt, optimize, and withstand the tests of growth and time.",
   },
   {
     number: '04',
     title: 'FUN FACT',
-    icon: '🌸',
+    icon: <GiFlowerStar size={36} className="text-white" />,
     content:
       "When I'm not tackling C++ DSA problems or fine-tuning AI models, I'm watching anime and mentally reverse-engineering fictional magic systems. Both require deep optimization and flawless state management.",
   },
@@ -76,7 +79,7 @@ export default function About() {
               </span>
 
               {/* Icon */}
-              <div className="text-4xl mb-4">{panel.icon}</div>
+              <div className="mb-4">{panel.icon}</div>
 
               {/* Title */}
               <h3 className="font-manga text-2xl text-white mb-4 tracking-widest">{panel.title}</h3>
