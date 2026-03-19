@@ -1,26 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Noto+Sans+JP:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --manga-black: #000000;
+  --manga-dark: #1a1a1a;
+  --manga-panel: #2e2e2e;
+  --manga-mid: #5a5a5a;
+  --manga-silver: #bfbfbf;
+  --manga-light: #f5f5f5;
+  --manga-white: #ffffff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--manga-black);
+  --color-foreground: var(--manga-white);
+  --font-sans: 'Noto Sans JP', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Bangers', cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #000000;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--manga-black);
+  color: var(--manga-white);
+  font-family: 'Noto Sans JP', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Manga halftone pattern */
+.halftone {
+  background-image: radial-gradient(circle, #2e2e2e 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+/* Manga border */
+.manga-border {
+  border: 3px solid var(--manga-white);
+  box-shadow: 4px 4px 0px var(--manga-white), 6px 6px 0 rgba(255,255,255,0.1);
+}
+
+.manga-border-thick {
+  border: 5px solid var(--manga-white);
+  box-shadow: 6px 6px 0px var(--manga-white);
+}
+
+/* Speech bubble */
+.speech-bubble {
+  position: relative;
+  background: var(--manga-white);
+  color: var(--manga-black);
+  border: 3px solid var(--manga-black);
+  border-radius: 8px;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  border: 10px solid transparent;
+  border-top-color: var(--manga-black);
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 32px;
+  border: 8px solid transparent;
+  border-top-color: var(--manga-white);
+  z-index: 1;
+}
+
+/* Thought bubble */
+.thought-bubble {
+  position: relative;
+  background: var(--manga-white);
+  color: var(--manga-black);
+  border: 3px solid var(--manga-black);
+  border-radius: 50px;
+}
+
+/* Panel corner number */
+.panel-number {
+  font-family: 'Bangers', cursive;
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: 1.4rem;
+  color: var(--manga-silver);
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--manga-black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--manga-mid);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--manga-silver);
+}
+
+/* Text selection */
+::selection {
+  background: var(--manga-white);
+  color: var(--manga-black);
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Manga title font */
+.font-manga {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.08em;
+}
+
+/* Ensure all buttons and links display a pointer cursor */
+button, a {
+  cursor: pointer;
 }
