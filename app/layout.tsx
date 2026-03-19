@@ -41,6 +41,7 @@ export default function RootLayout({
       <body className="bg-black text-white antialiased">
         <MangaCursor />
         {children}
+        <Analytics />
       </body>
     </html>
   );
