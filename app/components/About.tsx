@@ -109,8 +109,8 @@ export default function About() {
           className="mt-0 border border-t-0 border-white bg-[#0d0d0d] px-8 py-4 flex flex-wrap gap-8 justify-between"
         >
           {[
-            { label: 'YEARS EXP', value: '3+' },
-            { label: 'PROJECTS', value: '20+' },
+            { label: 'YEARS EXP ', value: '1+' },
+            { label: 'PROJECTS', value: '10+' },
             { label: 'STACK', value: 'MERN / AI' },
             { label: 'UPTIME', value: '99.9%' },
           ].map((stat) => (
