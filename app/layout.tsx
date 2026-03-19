@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MangaCursor from "./components/MangaCursor";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Sai Shivamani — Full Stack • DSA • AI Engineer",
