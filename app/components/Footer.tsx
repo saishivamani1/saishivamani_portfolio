@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
           <span className="font-mono text-xs text-[#5a5a5a] tracking-widest">
-            BUILT WITH NEXT.JS • FRAMER MOTION • MANGA
+            IF YOU DON’T TAKE RISKS, YOU CAN’T CREATE A FUTURE. — ONE PIECE
           </span>
         </div>
 
