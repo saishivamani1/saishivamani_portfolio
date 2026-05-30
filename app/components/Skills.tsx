@@ -2,18 +2,55 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { gsap } from 'gsap';
-import { FaCode, FaRobot, FaDatabase, FaBrain } from 'react-icons/fa';
+import { FaCode, FaRobot, FaDatabase, FaCloud, FaServer } from 'react-icons/fa';
 import { SiReact } from 'react-icons/si';
 
-const skills = [
-  { name: 'Programming Languages', level: 90, icon: <FaCode     size={24} className="text-white" />, desc: 'Python, C++, Java, JavaScript, TypeScript, C' },
-  { name: 'Frameworks & Tech',      level: 85, icon: <SiReact    size={24} className="text-white" />, desc: 'React.js, Next.js, Flask, Streamlit, Firebase, Gradio, Spring Boot' },
-  { name: 'Machine Learning & AI',  level: 88, icon: <FaRobot    size={24} className="text-white" />, desc: 'Machine Learning, NLP, Transformers, LLMs, Data Analysis' },
-  { name: 'Databases',              level: 80, icon: <FaDatabase size={24} className="text-white" />, desc: 'MySQL, MongoDB, Firestore' },
-  { name: 'Core Concepts',          level: 95, icon: <FaBrain    size={24} className="text-white" />, desc: 'DSA, Problem Solving, System Design Fundamentals' },
+const skillCategories = [
+  {
+    id: '01',
+    name: 'Languages',
+    icon: <FaCode size={20} className="text-white" />,
+    items: ['Python', 'C++', 'JavaScript', 'SQL'],
+    level: 90,
+  },
+  {
+    id: '02',
+    name: 'AI & Machine Learning',
+    icon: <FaRobot size={20} className="text-white" />,
+    items: ['NLP', 'Hugging Face', 'Transformers', 'FAISS'],
+    level: 88,
+  },
+  {
+    id: '03',
+    name: 'Backend',
+    icon: <FaServer size={20} className="text-white" />,
+    items: ['FastAPI', 'Flask', 'REST APIs'],
+    level: 85,
+  },
+  {
+    id: '04',
+    name: 'Frontend',
+    icon: <SiReact size={20} className="text-white" />,
+    items: ['React', 'Tailwind CSS', 'HTML', 'CSS'],
+    level: 82,
+  },
+  {
+    id: '05',
+    name: 'Database',
+    icon: <FaDatabase size={20} className="text-white" />,
+    items: ['MySQL', 'SQLite'],
+    level: 80,
+  },
+  {
+    id: '06',
+    name: 'Cloud & DevOps',
+    icon: <FaCloud size={20} className="text-white" />,
+    items: ['AWS', 'Docker', 'Linux', 'Git', 'GitHub Actions'],
+    level: 78,
+  },
 ];
 
-function PowerBar({ skill, index }: { skill: typeof skills[0]; index: number }) {
+function PowerBar({ skill, index }: { skill: typeof skillCategories[0]; index: number }) {
   const barRef = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
@@ -26,11 +63,21 @@ function PowerBar({ skill, index }: { skill: typeof skills[0]; index: number }) 
       {
         width: `${skill.level}%`,
         duration: 1.4,
-        delay: index * 0.15,
+        delay: index * 0.12,
         ease: 'power3.out',
       }
     );
   }, [inView, skill.level, index]);
+
+  const levelLabel =
+    skill.level >= 90 ? '★ MASTERED' :
+    skill.level >= 82 ? '◆ ADVANCED' :
+    '◇ PROFICIENT';
+
+  const levelColor =
+    skill.level >= 90 ? 'text-white animate-pulse' :
+    skill.level >= 82 ? 'text-[#bfbfbf]' :
+    'text-[#5a5a5a]';
 
   return (
     <motion.div
@@ -38,26 +85,25 @@ function PowerBar({ skill, index }: { skill: typeof skills[0]; index: number }) 
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
       className="group"
     >
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-3">
-          <span className="flex items-center justify-center w-8">{skill.icon}</span>
+          <span className="flex items-center justify-center w-7">{skill.icon}</span>
           <div>
-            <p className="font-manga text-lg text-white tracking-widest">{skill.name}</p>
-            <p className="font-mono text-xs text-[#5a5a5a]">{skill.desc}</p>
+            <p className="font-manga text-base text-white tracking-widest">{skill.name}</p>
+            <p className="font-mono text-[10px] text-[#5a5a5a]">{skill.items.join(' · ')}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="font-manga text-3xl text-white">{skill.level}</span>
-          <span className="font-mono text-xs text-[#5a5a5a]">/ 100</span>
+        <div className="flex items-center gap-1.5">
+          <span className="font-manga text-2xl text-white">{skill.level}</span>
+          <span className="font-mono text-[10px] text-[#5a5a5a]">/ 100</span>
         </div>
       </div>
 
-      {/* Power bar container */}
-      <div className="relative h-4 bg-[#1a1a1a] border border-[#2e2e2e] overflow-hidden">
-        {/* Tick marks */}
+      {/* Power bar */}
+      <div className="relative h-3 bg-[#1a1a1a] border border-[#2e2e2e] overflow-hidden">
         {[25, 50, 75].map((tick) => (
           <div
             key={tick}
@@ -65,28 +111,17 @@ function PowerBar({ skill, index }: { skill: typeof skills[0]; index: number }) 
             style={{ left: `${tick}%` }}
           />
         ))}
-        {/* Filled bar */}
         <div
           ref={barRef}
           className="absolute top-0 left-0 h-full bg-white"
           style={{ width: '0%' }}
         />
-        {/* Shine effect */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
       </div>
 
-      {/* Level label */}
       <div className="flex justify-between mt-1">
         <span className="font-mono text-[10px] text-[#5a5a5a]">POWER LEVEL</span>
-        {skill.level >= 90 && (
-          <span className="font-mono text-[10px] text-white tracking-widest animate-pulse">★ MASTERED</span>
-        )}
-        {skill.level >= 80 && skill.level < 90 && (
-          <span className="font-mono text-[10px] text-[#bfbfbf] tracking-widest">◆ ADVANCED</span>
-        )}
-        {skill.level < 80 && (
-          <span className="font-mono text-[10px] text-[#5a5a5a] tracking-widest">◇ PROFICIENT</span>
-        )}
+        <span className={`font-mono text-[10px] tracking-widest ${levelColor}`}>{levelLabel}</span>
       </div>
     </motion.div>
   );
@@ -95,7 +130,7 @@ function PowerBar({ skill, index }: { skill: typeof skills[0]; index: number }) 
 export default function Skills() {
   return (
     <section id="skills" className="relative py-28 bg-black overflow-hidden">
-      {/* Background speed lines subtle */}
+      {/* Background subtle lines */}
       <div
         className="absolute inset-0 pointer-events-none opacity-5"
         style={{
@@ -132,14 +167,14 @@ export default function Skills() {
               <span className="font-mono text-xs tracking-widest text-[#5a5a5a] border border-[#2e2e2e] px-2 py-0.5">COMBAT STATS</span>
             </div>
 
-            <div className="flex flex-col gap-8">
-              {skills.map((skill, i) => (
+            <div className="flex flex-col gap-6">
+              {skillCategories.map((skill, i) => (
                 <PowerBar key={skill.name} skill={skill} index={i} />
               ))}
             </div>
           </div>
 
-          {/* Right panel — character card style */}
+          {/* Right panel — character card */}
           <div className="flex flex-col gap-4">
             {/* Character card */}
             <motion.div
@@ -149,17 +184,17 @@ export default function Skills() {
               transition={{ duration: 0.6 }}
               className="border-2 border-white bg-[#1a1a1a] p-6 relative"
             >
-              <span className="panel-number">05</span>
+              <span className="panel-number">03</span>
               <div className="mt-4">
                 <div className="font-manga text-4xl text-white mb-1">SAI SHIVAMANI</div>
-                <div className="font-mono text-xs text-[#5a5a5a] mb-4 tracking-widest">CLASS: FULL STACK / AI ENGINEER</div>
+                <div className="font-mono text-xs text-[#5a5a5a] mb-4 tracking-widest">CLASS: SOFTWARE ENGINEER / AI SYSTEMS</div>
                 <div className="grid grid-cols-2 gap-3">
                   {[
                     { stat: 'STR', label: 'Algorithms', val: 'S+' },
-                    { stat: 'AGI', label: 'Full Stack', val: 'A+' },
-                    { stat: 'INT', label: 'System Design', val: 'S' },
-                    { stat: 'DEF', label: 'Optimization', val: 'A+' },
-                    { stat: 'MAG', label: 'AI/ML Models', val: 'S' },
+                    { stat: 'AGI', label: 'Full-Stack', val: 'A+' },
+                    { stat: 'INT', label: 'AI / NLP', val: 'S' },
+                    { stat: 'DEF', label: 'Cloud / DevOps', val: 'A' },
+                    { stat: 'MAG', label: 'LLMs & NLP', val: 'S' },
                     { stat: 'LUK', label: 'Scalability', val: 'S' },
                   ].map((s) => (
                     <div key={s.stat} className="border border-[#2e2e2e] px-3 py-2 flex justify-between items-center">
@@ -184,7 +219,11 @@ export default function Skills() {
             >
               <p className="font-mono text-xs text-[#5a5a5a] mb-3 tracking-widest">EQUIPMENT / TOOLS</p>
               <div className="flex flex-wrap gap-2">
-                {['React.js', 'Next.js', 'Firebase', 'Python', 'C++', 'Transformers', 'MySQL', 'MongoDB', 'Gradio', 'Flask'].map((tool) => (
+                {[
+                  'Python', 'C++', 'React', 'FastAPI', 'Flask',
+                  'Hugging Face', 'Transformers', 'FAISS',
+                  'AWS', 'Docker', 'MySQL', 'Git', 'GitHub Actions',
+                ].map((tool) => (
                   <motion.span
                     key={tool}
                     whileHover={{ scale: 1.05, backgroundColor: '#ffffff', color: '#000000' }}

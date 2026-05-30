@@ -3,10 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import SpeedLines from './SpeedLines';
-import { FaCode, FaRobot } from 'react-icons/fa';
-import { GiCrossedSwords } from 'react-icons/gi';
+import { FaCode, FaRobot, FaCloud } from 'react-icons/fa';
 
-const roles = ['Full Stack Developer', 'Problem Solver', 'AI Engineer'];
+const roles = ['Software Engineer', 'AI Systems Builder', 'Cloud & Full-Stack Dev'];
 
 function TypingText({ texts }: { texts: string[] }) {
   const [displayed, setDisplayed] = useState('');
@@ -81,7 +80,7 @@ export default function Hero() {
             className="speech-bubble px-5 py-4 max-w-xs"
           >
             <p className="font-mono text-sm font-bold text-black leading-relaxed">
-              &quot;Ready to ship scalable software systems faster than a <span className="underline">Kamehameha</span>.&quot;
+              &quot;Building intelligent systems using AI, NLP, Cloud, and scalable software architectures.&quot;
             </p>
           </motion.div>
 
@@ -108,6 +107,16 @@ export default function Hero() {
             </div>
           </motion.div>
 
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="font-mono text-xs text-[#5a5a5a] tracking-wide leading-relaxed max-w-sm"
+          >
+            Software Engineer | AI Systems • Cloud • Full-Stack Development
+          </motion.p>
+
           {/* Tags */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -116,9 +125,9 @@ export default function Hero() {
             className="flex flex-wrap gap-2"
           >
             {[
-              { label: 'Full Stack', icon: <FaCode        size={12} /> },
-              { label: 'C++ DSA',   icon: <GiCrossedSwords size={12} /> },
-              { label: 'AI',        icon: <FaRobot        size={12} /> },
+              { label: 'Full-Stack', icon: <FaCode        size={12} /> },
+              { label: 'AI & NLP',   icon: <FaRobot       size={12} /> },
+              { label: 'Cloud',      icon: <FaCloud        size={12} /> },
             ].map((tag) => (
               <span key={tag.label} className="inline-flex items-center gap-1.5 font-mono text-xs px-3 py-1.5 border border-[#2e2e2e] text-[#bfbfbf] bg-[#1a1a1a]">
                 {tag.icon} {tag.label}
@@ -172,8 +181,9 @@ export default function Hero() {
             <div className="relative w-full aspect-[3/4] overflow-hidden bg-[#2e2e2e]">
               <Image
                 src="/portrait.png"
-                alt="Sai Shivamani — Anime Portrait"
+                alt="Sai Shivamani — Software Engineer & AI Systems Builder, anime-style portrait"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 384px"
                 className="object-cover object-top grayscale"
                 priority
               />
@@ -189,13 +199,13 @@ export default function Hero() {
               {/* Name overlay */}
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="font-manga text-lg text-white tracking-widest">SAI SHIVAMANI</p>
-                <p className="font-mono text-xs text-[#bfbfbf]">Full Stack • C++ DSA • AI</p>
+                <p className="font-mono text-xs text-[#bfbfbf]">Software Engineer • AI • Cloud</p>
               </div>
             </div>
 
             {/* Stats bar */}
             <div className="mt-3 flex justify-between px-2">
-              {['LVL 99', 'FULL STACK', 'C++ DSA', 'AI'].map((stat) => (
+              {['LVL 99', 'AI/NLP', 'CLOUD', 'FULL-STACK'].map((stat) => (
                 <span key={stat} className="font-mono text-[10px] text-[#5a5a5a] tracking-wider">{stat}</span>
               ))}
             </div>

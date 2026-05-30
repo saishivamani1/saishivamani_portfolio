@@ -1,6 +1,5 @@
 'use client';
 import { motion } from 'framer-motion';
-import MangaPanel from './MangaPanel';
 import { BsLightningChargeFill } from 'react-icons/bs';
 import { FaBullseye } from 'react-icons/fa';
 import { GiFlowerStar } from 'react-icons/gi';
@@ -11,21 +10,21 @@ const panels = [
     title: 'WHO AM I',
     icon: <BsLightningChargeFill size={36} className="text-white" />,
     content:
-      "I'm Sai Shivamani, a dynamic problem solver and AI Engineer focused on building scalable computing systems. I excel at translating complex algorithmic challenges into efficient, production-ready full-stack applications.",
+      "Software Engineer passionate about building AI-powered systems, cloud-native applications, and scalable software solutions. Experienced in NLP, backend engineering, cloud technologies, and full-stack development with a strong focus on solving real-world challenges through technology.",
   },
   {
     number: '03',
     title: 'MY PHILOSOPHY',
     icon: <FaBullseye size={36} className="text-white" />,
     content:
-      "Logically sound, algorithmically robust. I believe in writing code that scales elegantly. Systems should be designed not just to function, but to adapt, optimize, and withstand the tests of growth and time.",
+      "Logically sound, algorithmically robust. I believe in writing code that scales elegantly. Systems should be designed not just to function, but to adapt, optimize, and withstand the tests of growth and time — from local prototypes to cloud-scale deployments.",
   },
   {
     number: '04',
-    title: 'FUN FACT',
+    title: 'WHAT I EXPLORE',
     icon: <GiFlowerStar size={36} className="text-white" />,
     content:
-      "When I'm not tackling C++ DSA problems or fine-tuning AI models, I'm watching anime and mentally reverse-engineering fictional magic systems. Both require deep optimization and flawless state management.",
+      "Currently exploring advanced AI systems, cloud infrastructure, and intelligent automation. When not building, I'm tackling LeetCode problems, studying NLP research, and watching anime — both require deep optimization and flawless state management.",
   },
 ];
 
@@ -109,9 +108,9 @@ export default function About() {
           className="mt-0 border border-t-0 border-white bg-[#0d0d0d] px-8 py-4 flex flex-wrap gap-8 justify-between"
         >
           {[
-            { label: 'YEARS EXP ', value: '1+' },
+            { label: 'YEARS EXP', value: '1+' },
             { label: 'PROJECTS', value: '10+' },
-            { label: 'STACK', value: 'MERN / AI' },
+            { label: 'STACK', value: 'AI / CLOUD' },
             { label: 'UPTIME', value: '99.9%' },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col gap-0.5">
